@@ -1,7 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-driver = webdriver.Chrome()
-driver.get("https://vtop.vit.ac.in/vtop/initialProcess")
-
-inpFields
+def formFill(driver):
+    inpFields = driver.find_elements_by_xpath("//input[@type='text' or 'number' or 'url']")
+    return inpFields
