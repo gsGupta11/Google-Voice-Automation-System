@@ -17,6 +17,18 @@ import linkname
 import t2v
 import autofill
 # import getbtn
+def checkTwoList(b,n):
+    flag=0
+    pos=0         #Two Lists
+    for i in n:
+        if i in b:
+            flag=1
+            pos = n.index(i)
+            break
+    if flag==1:
+        return pos+1
+    else:
+        return False
 chromeoptions = webdriver.ChromeOptions()
 chromeoptions.add_argument("--incognito")
 driver = webdriver.Chrome(chrome_options=chromeoptions)
@@ -51,7 +63,7 @@ while True:
     # btntext = [i.text.lower() for i in btnsele]
     formFields = autofill.formFill(driver)
     formFieldsPlaceholder = [i.get_attribute('placeholder').lower() for i in formFields]
-    print(" ".join(b[1:]).lower())
+    print(ins)
     if 'reload' in b:
         driver.refresh()
         x=0
@@ -61,12 +73,13 @@ while True:
     elif 'forward' in b:
         driver.forward()  
         x=0
-    elif " ".join(b[1:]).lower() in linktext:
-        linkele[linktext.index((" ".join(b[1:])).lower())].click()
+    elif checkTwoList(b,numbers):
+        link.clickLink(driver,checkTwoList(b,numbers)-1)
         x=0
-    elif b[1].lower() in numbers:
-        link.clickLink(driver,numbers.index(b[1]))
+    elif checkTwoList(b,linktext):
+        linkele[checkTwoList(b,linktext)-1].click()
         x=0
+
     elif "google search" in " ".join(b).lower():
         driver.get("https://www.google.com/?#q="+" ".join(b[b.index('search')+1:]))
         x=0
