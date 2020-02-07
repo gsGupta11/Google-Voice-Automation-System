@@ -1,4 +1,4 @@
-########################         Instructions             #####################################
+########################         Instructions          #####################################
 # cmd0- Facebook/mmt/anything
 # cmd1- click fourth link
 # cmd2- click linkname
@@ -66,20 +66,14 @@ while True:
     print(ins)
     if 'reload' in b:
         driver.refresh()
-        x=0
     elif 'back' in b:
         driver.back()
-        x=0
     elif 'forward' in b:
         driver.forward()  
-        x=0
     elif checkTwoList(b,numbers):
         link.clickLink(driver,checkTwoList(b,numbers)-1)
-        x=0
     elif checkTwoList(b,linktext):
         linkele[checkTwoList(b,linktext)-1].click()
-        x=0
-
     elif "google search" in " ".join(b).lower():
         driver.get("https://www.google.com/?#q="+" ".join(b[b.index('search')+1:]))
         x=0
